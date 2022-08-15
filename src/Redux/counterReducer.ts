@@ -1,35 +1,61 @@
 export type CounterType = {
     startValue: number,
     maxValue: number,
-    counter: string | number
+    counter: number,
+    isDisabledButtonSet: boolean,
+    isDisabledButtonIncrementCount: boolean,
+    isDisabledButtonReset: boolean,
 }
 
 const initialState: CounterType = {
     startValue: 0,
-    maxValue: 0,
-    counter: 'Set the value'
+    maxValue: 1,
+    counter: 0,
+    isDisabledButtonIncrementCount: true,
+    isDisabledButtonReset: true,
+    isDisabledButtonSet: false
 }
 
 export const counterReducer = (state = initialState, action: ActionType): CounterType => {
     switch (action.type) {
         case 'INCREMENT-COUNTER': {
             return {
-                ...state, startValue: state.startValue + 1
+                ...state,
+                counter: state.counter + 1,
+                isDisabledButtonReset: false
             }
         }
         case 'SET-COUNTER-FROM-START-VALUE': {
             return {
-                ...state, counter: state.startValue
+                ...state,
+                counter: state.startValue,
+                isDisabledButtonSet: true,
+                isDisabledButtonIncrementCount: false,
             }
         }
         case 'CHANGE-START-VALUE': {
             return {
-                ...state, startValue:action.payload.newValue
+                ...state,
+                startValue: action.payload.newValue,
+                isDisabledButtonSet: false,
+                isDisabledButtonIncrementCount: true,
+                isDisabledButtonReset: true,
             }
         }
         case 'CHANGE-MAX-VALUE': {
             return {
-                ...state, maxValue: action.payload.newValue
+                ...state,
+                maxValue: action.payload.newValue,
+                isDisabledButtonSet: false,
+                isDisabledButtonIncrementCount: true,
+                isDisabledButtonReset: true,
+            }
+        }
+        case 'RESET-COUNTER-VALUE': {
+            return {
+                ...state,
+                counter: state.startValue,
+                isDisabledButtonReset: true
             }
         }
         default:
@@ -41,14 +67,13 @@ export type ActionType = IncrementValueACType
     | setCounterFromStartValueACType
     | changeStartValueACType
     | changeMaxValueACType
+    | resetCounterValueACType
 
 type IncrementValueACType = ReturnType<typeof incrementValueAC>
 export const incrementValueAC = () => {
     return {
         type: 'INCREMENT-COUNTER',
-        payload: {
-
-        }
+        payload: {}
     } as const
 }
 
@@ -56,9 +81,7 @@ type setCounterFromStartValueACType = ReturnType<typeof setCounterFromStartValue
 export const setCounterFromStartValueAC = () => {
     return {
         type: 'SET-COUNTER-FROM-START-VALUE',
-        payload: {
-
-        }
+        payload: {}
     } as const
 }
 
@@ -79,5 +102,12 @@ export const changeMaxValueAC = (newValue: number) => {
         payload: {
             newValue
         }
+    } as const
+}
+type resetCounterValueACType = ReturnType<typeof resetCounterValueAC>
+export const resetCounterValueAC = () => {
+    return {
+        type: 'RESET-COUNTER-VALUE',
+        payload: {}
     } as const
 }
