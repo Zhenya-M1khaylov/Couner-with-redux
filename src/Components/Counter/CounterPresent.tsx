@@ -32,7 +32,7 @@ export const CounterPresent: React.FC<CounterPresentPropsType> = (props) => {
         isDisabledButtonReset,
         isDisabledButtonIncrementCount,
         maxCountValue,
-        resetCounterValue
+        resetCounterValue,
     } = props
 
     return (
