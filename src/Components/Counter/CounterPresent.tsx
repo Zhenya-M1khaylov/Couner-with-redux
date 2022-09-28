@@ -1,5 +1,6 @@
 import React from 'react';
 import s from '../../Components/Counter/CounterPresent.module.css'
+import {Button} from '@mui/material';
 
 type CounterPresentPropsType = {
     startValue: number,
@@ -37,7 +38,7 @@ export const CounterPresent: React.FC<CounterPresentPropsType> = (props) => {
 
     return (
         <>
-            <div>
+            <div className={s.container}>
                 startValue: <input
                 type={'number'}
                 value={startValue}
@@ -52,21 +53,9 @@ export const CounterPresent: React.FC<CounterPresentPropsType> = (props) => {
             />
             </div>
             <div>
-                <button
-                    onClick={setCounterFromStartValueHandler}
-                    disabled={isDisabledButtonSet}
-                >Set
-                </button>
-                <button
-                    onClick={incrementCounterValue}
-                    disabled={isDisabledButtonIncrementCount || maxCountValue}
-                >+
-                </button>
-                <button
-                    onClick={resetCounterValue}
-                    disabled={isDisabledButtonReset}
-                >Reset
-                </button>
+                <Button variant="contained" onClick={setCounterFromStartValueHandler} disabled={isDisabledButtonSet}>Set</Button>
+                <Button variant="contained" onClick={incrementCounterValue} disabled={isDisabledButtonIncrementCount || maxCountValue}>+</Button>
+                <Button variant="contained" onClick={resetCounterValue} disabled={isDisabledButtonReset}>reset</Button>
             </div>
             <div>
                 {counter}
