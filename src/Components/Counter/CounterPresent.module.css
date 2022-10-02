@@ -1,0 +1,86 @@
+.container {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 0 20px;
+
+}
+
+.container_wrapper {
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: space-around;
+    padding: 10px 20px;
+}
+
+.setter {
+    border: 1px solid gainsboro;
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.setter_item {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+}
+
+.setter_value {
+    font-size: 20px;
+}
+
+.counter {
+    border: 1px solid gainsboro;
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 220px;
+}
+
+.counter_value {
+    font-size: 40px;
+    margin-top: 30px;
+}
+
+.counter_value_edit {
+    font-size: 30px;
+}
+
+.buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.red {
+    color:red;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+@media screen and (max-width: 678px){
+    .counter {
+        gap:20px
+    }
+    .counter__value {
+        margin-top: 0;
+    }
+}
+
+@media screen and (max-width: 470px){
+    .setter_item {
+        justify-content: center;
+    }
+}
